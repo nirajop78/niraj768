@@ -1,0 +1,78 @@
+/* Base */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header/Footer */
+header, footer {
+  background: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+.powered {
+  color: #93c5fd;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Main */
+main {
+  padding: 20px;
+}
+
+/* Sections */
+.section {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #1e293b;
+}
+
+/* Inputs/Buttons */
+input, textarea, select, button {
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+  background-color: #2563eb;
+  color: white;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+/* Outputs */
+.output {
+  margin-top: 10px;
+}
+
+/* Canvas */
+canvas {
+  background: #1e293b;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Links */
+a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
