@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Whiskerpedia</title>
+<style>
+  body{font-family:sans-serif;background:#f3f4f6;color:#111;margin:0;padding:0;}
+  header, footer{background:#2563eb;color:white;text-align:center;padding:1em;}
+  main{padding:20px;}
+  input,textarea,select,button{margin:5px 0;padding:5px;}
+  .section{border:1px solid #ccc;border-radius:5px;padding:10px;margin-bottom:15px;}
+</style>
+</head>
+<body>
+<header><h1>Whiskerpedia - Educational Content Maker</h1></header>
+<main>
+  <!-- Content Generator -->
+  <div class="section">
+    <h2>Content Generator</h2>
+    <input type="text" id="topic" placeholder="Enter topic"><br>
+    <button onclick="generateContent()">Generate Content</button>
+    <div id="generatedContent" style="margin-top:10px;"></div>
+  </div>
+
+  <!-- Quiz Generator -->
+  <div class="section">
+    <h2>Quiz Generator</h2>
+    <textarea id="quizContent" placeholder="Paste or write content here" rows="4" cols="50"></textarea><br>
+    <button onclick="generateQuiz()">Generate Quiz</button>
+    <div id="quizOutput" style="margin-top:10px;"></div>
+  </div>
+
+  <!-- Mini Game -->
+  <div class="section">
+    <h2>Learning Game (Memory Match)</h2>
+    <canvas id="memoryGame" width="400" height="300" style="border:1px solid #000;"></canvas>
+    <p>Click on tiles to find matching pairs.</p>
+  </div>
+</main>
+<footer>Whiskerpedia &copy; 2025</footer>
+
+<script>
+// ---------------- Content Generator ----------------
+function generateContent(){
+  const topic = document.getElementById('topic').value;
+  const output = document.getElementById('generatedContent');
+  if(!topic){ output.innerText = "Enter a topic first"; return; }
+  // Dummy example, can connect to AI API
+  output.innerHTML = `<h3>Summary for ${topic}</h3><p>${topic} is an important topic in education. Key points: ...</p>`;
+}
+
+// ---------------- Quiz Generator ----------------
+function generateQuiz(){
+  const text = document.getElementById('quizContent').value;
+  const output = document.getElementById('quizOutput');
+  if(!text){ output.innerText="Paste content first"; return; }
+  // Dummy example, generates one question
+  output.innerHTML = `<div>Q: What is the main topic discussed?<br>
+  <button>A. ${text.split(" ")[0]}</button>
+  <button>B. Example</button>
+  <button>C. Sample</button>
+  <button>D. Unknown</button></div>`;
+}
+
+// ---------------- Mini Memory Game ----------------
+(function(){
+  const canvas = document.getElementById("memoryGame");
+  const ctx = canvas.getContext("2d");
+  const grid = 4;
+  const size = canvas.width/grid;
+  let tiles=[], selected=[], matched=[];
+  
+  // Initialize tiles with pairs
+  for(let i=0;i<grid*grid/2;i++){tiles.push(i);tiles.push(i);}
+  tiles.sort(()=>Math.random()-0.5);
+
+  canvas.addEventListener("click", e=>{
+    const x = Math.floor(e.offsetX/size);
+    const y = Math.floor(e.offsetY/size);
+    const idx = y*grid+x;
+    if(matched.includes(idx) || selected.includes(idx)) return;
+    selected.push(idx);
+    if(selected.length==2){
+      if(tiles[selected[0]]==tiles[selected[1]]) matched.push(...selected);
+      setTimeout(()=>selected=[],500);
+    }
+    draw();
+  });
+
+  function draw(){
+    ctx.fillStyle="#f3f4f6"; ctx.fillRect(0,0,canvas.width,canvas.height);
+    for(let i=0;i<tiles.length;i++){
+      const x=i%grid*size, y=Math.floor(i/grid)*size;
+      ctx.fillStyle=matched.includes(i)||selected.includes(i)?"#2563eb":"#10b981";
+      ctx.fillRect(x,y,size-2,size-2);
+      if(matched.includes(i)||selected.includes(i)){
+        ctx.fillStyle="white";
+        ctx.font="20px sans-serif";
+        ctx.fillText(tiles[i],x+size/3,y+size/1.5);
+      }
+    }
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
