@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Whiskerpedia AI</title>
+<title>Brevis - @brevis_zk Educational Content Maker</title>
 <style>
   body{font-family:sans-serif;background:#0f172a;color:#f8fafc;margin:0;padding:0;}
   header, footer{background:#2563eb;color:white;text-align:center;padding:1em;}
@@ -11,10 +11,15 @@
   button{cursor:pointer;}
   .section{border:1px solid #ccc;border-radius:5px;padding:10px;margin-bottom:15px;background:#1e293b;}
   canvas{background:#1e293b;display:block;margin-bottom:10px;}
+  a{color:#93c5fd;}
 </style>
 </head>
 <body>
-<header><h1>Whiskerpedia AI - Educational Content Maker</h1></header>
+<header>
+  <h1>Brevis - @brevis_zk Educational Content Maker</h1>
+  <p style="color:#93c5fd;font-size:14px;margin-top:5px;">Powered by <strong>Brevis @brevis_zk</strong></p>
+</header>
+
 <main>
   <!-- Content Generator -->
   <div class="section">
@@ -53,7 +58,10 @@
     <p>Press space to jump.</p>
   </div>
 </main>
-<footer>Whiskerpedia AI &copy; 2025</footer>
+
+<footer>
+  Brevis AI &copy; 2025 • Follow on X: <a href="https://x.com/brevis_zk" target="_blank">@brevis_zk</a>
+</footer>
 
 <script>
 // ------------------ AI Content Generator ------------------
@@ -63,10 +71,9 @@ async function generateContent(){
   if(!topic){ output.innerText="Enter a topic"; return; }
   output.innerText = "Generating content...";
   try{
-    // Replace with your own API call to GPT/OpenAI
-    // Example: fetch('/api/gpt-content?topic='+encodeURIComponent(topic))
+    // Replace this simulated content with real GPT API call
     const simulated = `<h3>${topic} Summary</h3><p>${topic} is an important subject. Key points include explanation, examples, and relevance in daily life.</p>`;
-    setTimeout(()=>output.innerHTML=simulated, 500); // simulate API delay
+    setTimeout(()=>output.innerHTML=simulated, 500);
   }catch(err){ output.innerText="Error generating content: "+err; }
 }
 
